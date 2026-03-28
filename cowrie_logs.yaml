@@ -1,0 +1,40 @@
+project: Cowrie Honeypot
+version: 2.9.15
+environment:
+  python: 3.13.12
+  twisted: 25.5.0
+
+server:
+  status: running
+  port: 2222
+  protocol: SSH
+  architecture: linux-x64-lsb
+
+connection:
+  source_ip: 127.0.0.1
+  source_port: 49478
+  session_id: 13cc5d7a5d84
+  ssh_version: SSH-2.0-OpenSSH_10.2p1
+  hassh_fingerprint: eeca2460550b9ded084ecf2f70a75356
+
+authentication:
+  attempts:
+    - username: root
+      password: root
+      status: failed
+    - username: root
+      password: admin
+      status: success
+
+session:
+  shell_access: granted
+  terminal: xterm-256color
+  env:
+    LANG: en_US.UTF-8
+    COLORTERM: truecolor
+
+logs:
+  - event: connection_established
+  - event: authentication_attempt
+  - event: authentication_success
+  - event: shell_opened
